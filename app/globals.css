@@ -1,26 +1,157 @@
 @import "tailwindcss";
 
 :root {
+  --primary: #0077b6;
+  --primary-dark: #005f92;
+  --accent: #0077b6;
+  --accent-light: #e0f2fe;
+  --highlight: #0077b6;
+  --white: #ffffff;
+  --off-white: #f8fafc;
+  --gray-100: #f8fafc;
+  --gray-300: #cbd5e1;
+  --gray-500: #6b7280;
+  --gray-700: #374151;
+  --dark: #0f172a;
+  --text-body: #4b5563;
+  --text-heading: #111827;
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: var(--text-heading);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-sans: var(--font-rubik);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-rubik), sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-rubik), sans-serif;
+  color: var(--text-heading);
+}
+
+.label-font {
+  font-family: var(--font-rubik), sans-serif;
+}
+
+.hero-grid {
+  background-image:
+    linear-gradient(to right, rgba(30, 41, 59, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(30, 41, 59, 0.06) 1px, transparent 1px);
+  background-size: 88px 88px;
+}
+
+.glow-pulse {
+  animation: glowPulse 2.5s ease-in-out infinite;
+}
+
+.marquee-track {
+  animation: marqueeLeft 30s linear infinite;
+}
+
+.marquee-track-reverse {
+  animation: marqueeRight 30s linear infinite;
+}
+
+.marquee-wrap:hover .marquee-track,
+.marquee-wrap:hover .marquee-track-reverse {
+  animation-play-state: paused;
+}
+
+.services-marquee-track {
+  animation: servicesMarquee 22s linear infinite;
+  will-change: transform;
+}
+
+.testimonials-marquee-track {
+  animation: testimonialMarquee 38s linear infinite;
+  will-change: transform;
+}
+
+.testimonials-vertical-track {
+  animation: testimonialsVertical 22s linear infinite;
+  will-change: transform;
+}
+
+.testimonials-vertical-track-slow {
+  animation-duration: 26s;
+}
+
+.testimonials-vertical-track-fast {
+  animation-duration: 18s;
+}
+
+@keyframes glowPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 rgba(37, 99, 235, 0.25);
+  }
+  50% {
+    box-shadow: 0 0 24px rgba(37, 99, 235, 0.45);
+  }
+}
+
+@keyframes marqueeLeft {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marqueeRight {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes servicesMarquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-33.333%);
+  }
+}
+
+@keyframes testimonialMarquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-33.333%);
+  }
+}
+
+@keyframes testimonialsVertical {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glow-pulse,
+  .marquee-track,
+  .marquee-track-reverse,
+  .services-marquee-track,
+  .testimonials-marquee-track,
+  .testimonials-vertical-track {
+    animation: none !important;
+  }
 }
