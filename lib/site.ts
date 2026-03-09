@@ -23,7 +23,7 @@ export const siteConfig = {
     "CRM development",
     "software integration services",
     "Ahmedabad software company",
-  ],
+  ] as string[],
 } as const;
 
 export const routes = {
