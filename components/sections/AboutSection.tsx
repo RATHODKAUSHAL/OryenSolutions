@@ -97,7 +97,7 @@ export function AboutSection() {
   const inView = useInView(sectionRef, { once: true, margin: "-60px" });
 
   return (
-    <section ref={sectionRef} className="relative overflow-hidden bg-[#f4f8fd] py-24 sm:py-32">
+    <section id="about" ref={sectionRef} className="relative overflow-hidden bg-[#f4f8fd] py-24 sm:py-32">
       <div className="relative mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

@@ -3,10 +3,22 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-
 const sectorTabs = [
+  {
+    id: "it",
+    label: "IT & Digital Solutions",
+    heading: "Web, Mobile & SaaS Solutions for Modern Businesses",
+    description:
+      "From custom CRM development and SaaS product engineering to mobile apps and full-stack web platforms - we help businesses build the digital infrastructure they need to grow.",
+    items: [
+      "Full-Stack Web Development",
+      "Custom CRM And Saas product Development",
+      "Mobile App Development (Android & iOS)",
+      "UI/UX Design & Development",
+      "API Integration & Data Visualization",
+      "Website Maintenance & SEO Optimization",
+    ],
+  },
   {
     id: "bim",
     label: "BIM & Ravit Automation",
@@ -17,32 +29,15 @@ const sectorTabs = [
       "Tekla Plugin & Macro Development",
       "Automated Drawing Creation Tools",
       "BOM & Report Customization",
-      "Fabrication & Shop Drawing Automation",
       "Tekla-Excel Data Integration",
       "REBAR & RAVIT Automation Solutions",
       "Custom Tekla API Tool Development",
     ],
   },
-  {
-    id: "it",
-    label: "IT & Digital Solutions",
-    heading: "Web, Mobile & SaaS Solutions for Modern Businesses",
-    description:
-      "From custom CRM development and SaaS product engineering to mobile apps and full-stack web platforms - we help businesses build the digital infrastructure they need to grow.",
-    items: [
-      "Full-Stack Web Development",
-      "SaaS Product Development",
-      "Custom CRM Development",
-      "Mobile App Development (Android & iOS)",
-      "UI/UX Design & Development",
-      "API Integration & Data Visualization",
-      "Website Maintenance & SEO Optimization",
-    ],
-  },
 ] as const;
 
 export function DualSectorSection() {
-  const [active, setActive] = useState<(typeof sectorTabs)[number]["id"]>("bim");
+  const [active, setActive] = useState<(typeof sectorTabs)[number]["id"]>("it");
   const activeTab = sectorTabs.find((tab) => tab.id === active)!;
 
   return (

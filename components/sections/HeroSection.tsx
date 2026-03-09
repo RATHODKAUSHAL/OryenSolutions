@@ -5,7 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 
 const slides = [
   {
-    title: "Innovative Web Solutions",
+    title: "AI-Powered Web Solutions",
     subtitle: "Oryen Solutions",
     body: "We build modern web platforms with performance, scalability, and clear business outcomes at the core.",
     bullets: ["Responsive Design", "Modern Frameworks", "SEO Optimized"],
@@ -61,7 +61,7 @@ export function HeroSection() {
               className="mx-auto mt-6 flex w-full max-w-4xl flex-1 flex-col"
             >
               <div className="mx-auto flex min-h-[230px] w-full max-w-4xl flex-col justify-start sm:min-h-[280px] lg:min-h-[320px]">
-                <h1 className="mx-auto max-w-4xl text-4xl font-semibold leading-tight text-[#021024] sm:text-5xl lg:text-6xl xl:text-7xl">
+                <h1 className="mx-auto max-w-4xl text-2xl font-semibold leading-tight text-[#021024] sm:text-5xl lg:text-6xl xl:text-7xl">
                   {slide.title}
                 </h1>
                 <span className="mx-auto mt-2 inline-block border-b-4 border-[#5483B3] pb-1 text-4xl font-semibold leading-tight text-[#052659] sm:text-5xl lg:text-6xl xl:text-7xl">

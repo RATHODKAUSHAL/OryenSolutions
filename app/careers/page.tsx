@@ -1,126 +1,43 @@
-"use client";
+import type { Metadata } from "next";
 
-import { useState } from "react";
+import { CareersClient } from "@/components/pages/CareersClient";
+import { StructuredData } from "@/components/seo/StructuredData";
+import { breadcrumbList, buildMetadata, faqSchema, routes } from "@/lib/site";
 
-import { Footer } from "@/components/layout/Footer";
-import { Navbar } from "@/components/layout/Navbar";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+export const metadata: Metadata = buildMetadata({
+  title: "Careers at OryenSolutions",
+  description:
+    "Learn about careers at OryenSolutions and submit your resume for future opportunities in web development, BIM automation, and software integration.",
+  path: routes.careers,
+  keywords: ["software careers Ahmedabad", "BIM automation jobs", "web development careers"],
+});
 
-const benefits = [
-  "Real project ownership with direct leadership collaboration",
-  "Flexible and outcome-driven work culture",
-  "Continuous learning across web, BIM, and automation domains",
-  "Competitive compensation and growth-oriented environment",
+const careerFaqs = [
+  {
+    question: "Does OryenSolutions have open jobs right now?",
+    answer:
+      "As of March 9, 2026, OryenSolutions does not list active openings on the site, but candidates can still submit a resume for future opportunities.",
+  },
+  {
+    question: "What roles fit OryenSolutions best?",
+    answer:
+      "The strongest fit is for candidates with experience in web development, BIM automation, custom integrations, and practical delivery in fast-moving engineering environments.",
+  },
 ] as const;
 
-const process = ["Application Review", "Technical Round", "Culture Fit Discussion", "Offer & Onboarding"] as const;
-
 export default function CareersPage() {
-  const [loading, setLoading] = useState(false);
-  const [status, setStatus] = useState("");
-
-  async function handleResumeSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    setStatus("");
-    setLoading(true);
-    const form = event.currentTarget;
-    const data = new FormData(form);
-
-    const res = await fetch("/api/resume-submit", { method: "POST", body: data });
-    setLoading(false);
-    if (res.ok) {
-      form.reset();
-      setStatus("Resume submitted successfully. We will contact you when relevant openings are available.");
-      return;
-    }
-    setStatus("Resume submission failed. Please try again.");
-  }
-
   return (
-    <main className="min-h-screen bg-white text-[#021024]">
-      <Navbar />
-
-      <section className="relative overflow-hidden bg-[#f4f8fd] py-20 sm:py-24">
-        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,rgba(84,131,179,0.1)_1px,transparent_1px),linear-gradient(to_bottom,rgba(84,131,179,0.1)_1px,transparent_1px)] bg-[size:88px_88px]" />
-        <div className="relative mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-3xl text-center">
-            <p className="inline-flex rounded-full border border-[#7DA0CA]/70 bg-white px-4 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-[#052659]">
-              Careers
-            </p>
-            <h1 className="mt-5 text-4xl font-bold sm:text-5xl">Build Your Career With OryenSolutions</h1>
-            <p className="mt-4 text-lg text-slate-600">
-              Join a team focused on practical innovation across web development, BIM automation, and digital transformation.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-20 sm:py-24">
-        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-8 lg:grid-cols-3">
-            <div className="rounded-3xl border border-[#7DA0CA]/35 bg-[#f8fcff] p-6 shadow-[0_10px_24px_rgba(84,131,179,0.1)] lg:col-span-2">
-              <h2 className="text-2xl font-bold">Current Openings</h2>
-              <div className="mt-6 rounded-2xl border border-[#7DA0CA]/30 bg-white p-6">
-                <p className="inline-flex rounded-full bg-[#eaf4fd] px-3 py-1 text-xs font-semibold text-[#052659]">No Active Openings</p>
-                <h3 className="mt-4 text-xl font-semibold">We are not hiring at the moment</h3>
-                <p className="mt-3 text-slate-600">
-                  We currently don&apos;t have active job openings. However, we are always happy to connect with talented professionals in
-                  web development, BIM automation, and software integration.
-                </p>
-                <p className="mt-3 text-slate-600">Submit your resume below, and we&apos;ll reach out when a suitable role opens.</p>
-
-                <form className="mt-5 space-y-3" onSubmit={handleResumeSubmit}>
-                  <div className="grid gap-3 sm:grid-cols-2">
-                    <Input name="fullName" required placeholder="Full Name" className="h-10 rounded-xl border-[#7DA0CA]/40 bg-[#f8fcff]" />
-                    <Input name="email" required type="email" placeholder="Email" className="h-10 rounded-xl border-[#7DA0CA]/40 bg-[#f8fcff]" />
-                  </div>
-                  <Input name="phone" placeholder="Phone Number" className="h-10 rounded-xl border-[#7DA0CA]/40 bg-[#f8fcff]" />
-                  <textarea
-                    name="message"
-                    placeholder="Short message (optional)"
-                    className="min-h-24 w-full rounded-xl border border-[#7DA0CA]/40 bg-[#f8fcff] px-3 py-2 text-sm outline-none placeholder:text-slate-400 focus:border-[#5483B3]"
-                  />
-                  <Input name="resume" type="file" required accept=".pdf,.doc,.docx" className="h-10 rounded-xl border-[#7DA0CA]/40 bg-white file:mr-3 file:rounded-md file:border-0 file:bg-[#eaf4fd] file:px-3 file:py-1 file:text-xs file:font-semibold file:text-[#052659]" />
-                  <Button disabled={loading} type="submit" className="h-10 rounded-xl bg-[#0077b6] px-5 text-white hover:bg-[#005f92]">
-                    {loading ? "Submitting..." : "Send Resume"}
-                  </Button>
-                  {status && <p className="text-sm text-slate-600">{status}</p>}
-                </form>
-              </div>
-            </div>
-
-            <div className="space-y-6">
-              <div className="rounded-3xl border border-[#7DA0CA]/35 bg-white p-6 shadow-[0_10px_24px_rgba(84,131,179,0.1)]">
-                <h3 className="text-xl font-semibold">Why Join Us</h3>
-                <ul className="mt-4 space-y-3">
-                  {benefits.map((item) => (
-                    <li key={item} className="rounded-xl border border-[#7DA0CA]/25 bg-[#f8fcff] px-3 py-2 text-sm text-slate-700">
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className="rounded-3xl border border-[#7DA0CA]/35 bg-white p-6 shadow-[0_10px_24px_rgba(84,131,179,0.1)]">
-                <h3 className="text-xl font-semibold">Hiring Process</h3>
-                <ol className="mt-4 space-y-2">
-                  {process.map((step, idx) => (
-                    <li key={step} className="flex items-center gap-3 rounded-xl border border-[#7DA0CA]/25 bg-[#f8fcff] px-3 py-2 text-sm">
-                      <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-[#eaf4fd] text-xs font-bold text-[#052659]">
-                        {idx + 1}
-                      </span>
-                      {step}
-                    </li>
-                  ))}
-                </ol>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <Footer />
-    </main>
+    <>
+      <StructuredData
+        data={[
+          breadcrumbList([
+            { name: "Home", path: routes.home },
+            { name: "Careers", path: routes.careers },
+          ]),
+          faqSchema([...careerFaqs]),
+        ]}
+      />
+      <CareersClient />
+    </>
   );
 }

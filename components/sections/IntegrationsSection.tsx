@@ -1,27 +1,32 @@
-import { Badge } from "@/components/ui/badge";
+import Link from "next/link";
+
+import { LogoImage } from "@/components/ui/logo-image";
 
 const logosRow1 = [
-  { name: "Microsoft Excel", logo: "https://cdn.simpleicons.org/microsoftexcel" },
-  { name: "HubSpot", logo: "https://cdn.simpleicons.org/hubspot" },
-  { name: "PayPal", logo: "https://cdn.simpleicons.org/paypal" },
-  { name: "Google Drive", logo: "https://cdn.simpleicons.org/googledrive" },
-  { name: "Google Ads", logo: "https://cdn.simpleicons.org/googleads" },
-  { name: "Zapier", logo: "https://cdn.simpleicons.org/zapier" },
-  { name: "Nodejs", logo: "https://cdn.simpleicons.org/node.js" },
+  { name: "Microsoft Excel", short: "XL", logo: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/microsoftexcel.svg" },
+  { name: "ChatGPT", short: "AI", logo: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/openai.svg" },
+  { name: "PayPal", short: "PP", logo: "https://cdn.simpleicons.org/paypal/00457C" },
+  { name: "Google Drive", short: "GD", logo: "https://cdn.simpleicons.org/googledrive/4285F4" },
+  { name: "Claude", short: "CL", logo: "https://cdn.simpleicons.org/claude/D97757" },
+  { name: "AngularJS", short: "NG", logo: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/angular.svg" },
+  { name: "Node.js", short: "ND", logo: "https://cdn.simpleicons.org/nodedotjs/5FA04E" },
+  { name: "PostgreSQL", short: "PG", logo: "https://cdn.simpleicons.org/postgresql/4169E1" },
 ] as const;
 
 const logosRow2 = [
-  { name: "Figma", logo: "https://cdn.simpleicons.org/figma" },
-  { name: "Nextjs", logo: "https://cdn.simpleicons.org/next.js" },
-  { name: "Asana", logo: "https://cdn.simpleicons.org/asana" },
-  { name: "Reactjs", logo: "https://cdn.simpleicons.org/react" },
-  { name: "Shopify", logo: "https://cdn.simpleicons.org/shopify" },
-  { name: "Javascript", logo: "https://cdn.simpleicons.org/javascript" },
-  { name: "Notion", logo: "https://cdn.simpleicons.org/notion" },
-  { name: "Revit", logo: "https://cdn.simpleicons.org/revit" },
+  { name: "Figma", short: "FG", logo: "https://cdn.simpleicons.org/figma/F24E1E" },
+  { name: "Next.js", short: "NX", logo: "https://cdn.simpleicons.org/nextdotjs/000000" },
+  { name: "CAD", short: "CD", logo: "https://cdn.simpleicons.org/autocad/E51050" },
+  { name: "React", short: "RC", logo: "https://cdn.simpleicons.org/react/61DAFB" },
+  { name: "MySQL", short: "MY", logo: "https://cdn.simpleicons.org/mysql/4479A1" },
+  { name: "JavaScript", short: "JS", logo: "https://cdn.simpleicons.org/javascript/F7DF1E" },
+  { name: "MongoDB", short: "MG", logo: "https://cdn.simpleicons.org/mongodb/47A248" },
+  { name: "Google Analytics", short: "GA", logo: "https://cdn.simpleicons.org/googleanalytics/E37400" },
+  { name: "Stripe Payments", short: "SP", logo: "https://cdn.simpleicons.org/stripe/635BFF" },
+  { name: "Autodesk", short: "AD", logo: "https://cdn.simpleicons.org/autodesk/0696D7" },
 ] as const;
 
-function LogoRow({ items, reverse = false }: { items: readonly { name: string; logo: string }[]; reverse?: boolean }) {
+function LogoRow({ items, reverse = false }: { items: readonly { name: string; short: string; logo: string }[]; reverse?: boolean }) {
   const doubled = [...items, ...items];
   return (
     <div className="overflow-hidden">
@@ -29,9 +34,10 @@ function LogoRow({ items, reverse = false }: { items: readonly { name: string; l
         {doubled.map((item, index) => (
           <div
             key={`${item.name}-${index}`}
-            className="flex min-w-[140px] items-center justify-center rounded-3xl border border-[#7DA0CA]/45 bg-white p-5 shadow-[0_6px_16px_rgba(84,131,179,0.14)] sm:min-w-[170px] sm:p-6"
+            className="flex min-w-[140px] items-center gap-3 rounded-3xl border border-[#7DA0CA]/45 bg-white p-5 shadow-[0_6px_16px_rgba(84,131,179,0.14)] sm:min-w-[170px] sm:p-6"
           >
-            <img src={item.logo} alt={`${item.name} logo`} className="h-10 w-10 shrink-0 sm:h-12 sm:w-12" loading="lazy" />
+            <LogoImage name={item.name} short={item.short} logo={item.logo} />
+            <span className="text-sm font-semibold text-[#052659]">{item.name}</span>
           </div>
         ))}
       </div>
@@ -48,7 +54,9 @@ export function IntegrationsSection() {
             <p className="inline-flex rounded-full border border-[#7DA0CA]/70 bg-white px-4 py-1 text-sm font-semibold uppercase tracking-[0.14em] text-[var(--primary)]">Integrations</p>
             <h2 className="mt-5 text-4xl font-bold tracking-tight">Don&apos;t replace. Integrate.</h2>
             <p className="mt-4 text-[#052659]/80">We understand the hassle of replacing tools your team already uses. That&apos;s why our solutions integrate with the platforms you rely on daily.</p>
-            <button type="button" className="mt-6 text-sm font-semibold text-[#5483B3] underline underline-offset-4 hover:text-[#052659]">All Integrations</button>
+            <Link href="/services/software-integration-custom-automation" className="mt-6 inline-block text-sm font-semibold text-[#5483B3] underline underline-offset-4 hover:text-[#052659]">
+              Explore integration services
+            </Link>
           </div>
 
           <div className="mt-10 space-y-4">

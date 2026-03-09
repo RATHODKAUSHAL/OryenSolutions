@@ -4,21 +4,21 @@ import Link from "next/link";
 import { Separator } from "@/components/ui/separator";
 
 const aboutLinks = [
-  { label: "About Us", href: "/#about" },
+  { label: "About Us", href: "/about" },
   { label: "Agile Mindset", href: "/agile-mindset" },
   { label: "Our Process", href: "/#process" },
 ] as const;
 
 const serviceLinks = [
-  { label: "Web Development", href: "/#services" },
-  { label: "CRM Development", href: "/#services" },
-  { label: "SaaS Development", href: "/#services" },
+  { label: "Web Development", href: "/services/web-development-digital-solutions" },
+  { label: "CRM Development", href: "/services/web-development-digital-solutions" },
+  { label: "SaaS Development", href: "/services/web-development-digital-solutions" },
 ] as const;
 
 const bimLinks = [
-  { label: "Tekla Automation", href: "/#services" },
-  { label: "Revit Development", href: "/#services" },
-  { label: "BIM Integration", href: "/#services" },
+  { label: "Tekla Automation", href: "/services/bim-automation-tekla-custom-development" },
+  { label: "Revit Development", href: "/services/bim-automation-tekla-custom-development" },
+  { label: "BIM Integration", href: "/services/software-integration-custom-automation" },
 ] as const;
 
 const socials = [
@@ -105,7 +105,7 @@ export function Footer() {
           </div>
         </div>
 
-        <p className="mt-6 text-center text-xs text-slate-500">© 2026 OryenSolutions. All rights reserved.</p>
+        <p className="mt-6 text-center text-xs text-slate-500">(c) 2026 OryenSolutions. All rights reserved.</p>
       </div>
     </footer>
   );

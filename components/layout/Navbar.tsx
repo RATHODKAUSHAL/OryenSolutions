@@ -141,9 +141,11 @@ export function Navbar() {
         </nav>
 
         <div className="hidden md:block">
-          <Button className="h-11 rounded-2xl bg-[#0077b6] px-6 text-white shadow-[0_8px_18px_rgba(2,16,36,0.2)] hover:bg-[#005f92]">
-            Talk To Us
-          </Button>
+          <Link href="/contact-us" aria-label="Contact Oryen Solutions">
+            <Button className="h-11 rounded-2xl bg-[#0077b6] px-6 text-white shadow-[0_8px_18px_rgba(2,16,36,0.2)] hover:bg-[#005f92]">
+              Talk To Us
+            </Button>
+          </Link>
         </div>
 
         <Sheet>
@@ -219,9 +221,11 @@ export function Navbar() {
               </div>
 
               <div className="mt-auto border-t border-[#7DA0CA]/35 bg-white/95 p-4">
-                <Button className="h-11 w-full rounded-xl bg-[#0077b6] text-white shadow-[0_8px_18px_rgba(2,16,36,0.2)] hover:bg-[#005f92]">
-                  Talk To Us
-                </Button>
+                <Link href="/contact-us" aria-label="Contact Oryen Solutions">
+                  <Button className="h-11 w-full rounded-xl bg-[#0077b6] text-white shadow-[0_8px_18px_rgba(2,16,36,0.2)] hover:bg-[#005f92]">
+                    Talk To Us
+                  </Button>
+                </Link>
               </div>
             </div>
           </SheetContent>

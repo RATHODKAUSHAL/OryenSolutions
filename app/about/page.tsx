@@ -1,10 +1,14 @@
+import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 
 import { Footer } from "@/components/layout/Footer";
 import { Navbar } from "@/components/layout/Navbar";
+import { StructuredData } from "@/components/seo/StructuredData";
 import { DualSectorSection } from "@/components/sections/DualSectorSection";
 import { IntegrationsSection } from "@/components/sections/IntegrationsSection";
 import { ProcessSection } from "@/components/sections/ProcessSection";
+import { breadcrumbList, buildMetadata, faqSchema, organizationSchema, routes } from "@/lib/site";
 
 const agilePractices = [
   {
@@ -31,9 +35,40 @@ const impact = [
   "Improved team efficiency through better prioritization and decision velocity",
 ] as const;
 
+const aboutFaqs = [
+  {
+    question: "What does OryenSolutions do?",
+    answer:
+      "OryenSolutions builds custom web platforms, SaaS products, CRM systems, BIM automation tools, and software integrations with an agile engineering approach.",
+  },
+  {
+    question: "Why does OryenSolutions use agile engineering?",
+    answer:
+      "Agile engineering helps the team validate progress early, reduce rework, and keep delivery aligned with real business priorities throughout the project lifecycle.",
+  },
+] as const;
+
+export const metadata: Metadata = buildMetadata({
+  title: "About OryenSolutions",
+  description:
+    "Learn about OryenSolutions, an Ahmedabad-based engineering team focused on agile software delivery, BIM automation, and practical digital transformation.",
+  path: routes.about,
+  keywords: ["about OryenSolutions", "Ahmedabad software team", "agile engineering company"],
+});
+
 export default function AboutPage() {
   return (
     <main className="min-h-screen bg-white text-[#021024]">
+      <StructuredData
+        data={[
+          organizationSchema(),
+          breadcrumbList([
+            { name: "Home", path: routes.home },
+            { name: "About", path: routes.about },
+          ]),
+          faqSchema([...aboutFaqs]),
+        ]}
+      />
       <Navbar />
 
       <section className="relative overflow-hidden bg-[#f4f8fd] py-20 sm:py-24">
@@ -58,7 +93,7 @@ export default function AboutPage() {
       <section className="py-20 sm:py-24">
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-3xl text-center">
-            <h2 className="text-3xl font-bold sm:text-4xl">How We Use Agile to Reduce Time</h2>
+            <h2 className="text-3xl font-bold sm:text-4xl">How We Use Agile to Reduce Delivery Time</h2>
             <p className="mt-4 text-lg text-slate-600">
               We apply agile methods in practical ways to improve execution speed and reduce workflow friction for every project.
             </p>
@@ -92,6 +127,26 @@ export default function AboutPage() {
       <DualSectorSection />
       <ProcessSection />
       <IntegrationsSection />
+      <section className="bg-[#f8fcff] py-20 sm:py-24">
+        <div className="mx-auto w-full max-w-4xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <h2 className="text-3xl font-bold sm:text-4xl">What Businesses Ask About OryenSolutions</h2>
+            <p className="mt-4 text-lg text-slate-600">Short answers make it easier for search engines and AI systems to understand how we work.</p>
+          </div>
+          <div className="mt-10 space-y-4">
+            {aboutFaqs.map((item) => (
+              <article key={item.question} className="rounded-2xl border border-[#7DA0CA]/35 bg-white p-6 shadow-[0_10px_24px_rgba(84,131,179,0.08)]">
+                <h3 className="text-xl font-semibold">{item.question}</h3>
+                <p className="mt-3 text-slate-600">{item.answer}</p>
+              </article>
+            ))}
+          </div>
+          <p className="mt-8 text-center text-slate-600">
+            Explore our <Link href={routes.agileMindset} className="font-semibold text-[#052659] underline underline-offset-4">agile mindset</Link> or review our{" "}
+            <Link href={routes.servicesWeb} className="font-semibold text-[#052659] underline underline-offset-4">digital delivery services</Link>.
+          </p>
+        </div>
+      </section>
       <Footer />
     </main>
   );

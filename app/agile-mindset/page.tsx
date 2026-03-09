@@ -1,7 +1,11 @@
+import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 
 import { Footer } from "@/components/layout/Footer";
 import { Navbar } from "@/components/layout/Navbar";
+import { StructuredData } from "@/components/seo/StructuredData";
+import { articleSchema, breadcrumbList, buildMetadata, faqSchema, routes } from "@/lib/site";
 
 const principles = [
   {
@@ -37,9 +41,46 @@ const outcomes = [
   "Faster decision-making through weekly stakeholder syncs",
 ] as const;
 
+const agileFaqs = [
+  {
+    question: "How does agile reduce software delivery time?",
+    answer:
+      "Agile reduces delivery time by breaking work into smaller increments, validating outcomes early, and resolving issues before they grow into costly late-stage rework.",
+  },
+  {
+    question: "Why does OryenSolutions use agile for BIM and web projects?",
+    answer:
+      "Agile supports both BIM and web projects because it improves visibility, shortens feedback loops, and helps teams prioritize the most important business outcomes first.",
+  },
+] as const;
+
+export const metadata: Metadata = buildMetadata({
+  title: "Agile Delivery Approach",
+  description:
+    "See how OryenSolutions uses agile delivery to reduce project risk, improve workflow visibility, and accelerate web, SaaS, CRM, and BIM automation projects.",
+  path: routes.agileMindset,
+  keywords: ["agile software delivery", "agile BIM workflows", "reduce software project risk"],
+  image: "/Assets/Agile.jpg",
+});
+
 export default function AgileMindsetPage() {
   return (
     <main className="min-h-screen bg-white text-[#021024]">
+      <StructuredData
+        data={[
+          breadcrumbList([
+            { name: "Home", path: routes.home },
+            { name: "Agile Mindset", path: routes.agileMindset },
+          ]),
+          articleSchema({
+            headline: "How OryenSolutions Delivers Faster With Agile",
+            description:
+              "An overview of the agile planning, sprint execution, and continuous improvement methods used by OryenSolutions.",
+            path: routes.agileMindset,
+          }),
+          faqSchema([...agileFaqs]),
+        ]}
+      />
       <Navbar />
 
       <section className="relative overflow-hidden bg-[#f4f8fd] py-20 sm:py-24">
@@ -123,6 +164,26 @@ export default function AgileMindsetPage() {
               </ul>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section className="py-20 sm:py-24">
+        <div className="mx-auto w-full max-w-4xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <h2 className="text-3xl font-bold sm:text-4xl">Common Questions About Agile Delivery</h2>
+            <p className="mt-4 text-lg text-slate-600">These concise answers are written for quick human understanding and answer engine extraction.</p>
+          </div>
+          <div className="mt-10 space-y-4">
+            {agileFaqs.map((item) => (
+              <article key={item.question} className="rounded-2xl border border-[#7DA0CA]/35 bg-[#f8fcff] p-6">
+                <h3 className="text-xl font-semibold">{item.question}</h3>
+                <p className="mt-3 text-slate-600">{item.answer}</p>
+              </article>
+            ))}
+          </div>
+          <p className="mt-8 text-center text-slate-600">
+            Need this delivery model for a live project? <Link href={routes.contact} className="font-semibold text-[#052659] underline underline-offset-4">Talk to our team</Link>.
+          </p>
         </div>
       </section>
 

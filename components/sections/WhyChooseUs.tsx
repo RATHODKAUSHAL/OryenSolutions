@@ -1,6 +1,7 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import Link from "next/link";
 
 const items = [
   {
@@ -105,7 +106,9 @@ export function WhyChooseUs() {
                     </Badge>
                   ))}
                 </div>
-                <Button className={`mt-6 h-10 rounded-full px-5 text-sm text-white ${item.button}`}>Learn more -&gt;</Button>
+                <Link href={item.type === "tekla" ? "/services/bim-automation-tekla-custom-development" : "/services/web-development-digital-solutions"}>
+                  <Button className={`mt-6 h-10 rounded-full px-5 text-sm text-white ${item.button}`}>Learn more -&gt;</Button>
+                </Link>
               </CardContent>
             </Card>
           ))}

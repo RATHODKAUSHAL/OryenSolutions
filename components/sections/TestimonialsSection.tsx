@@ -1,4 +1,4 @@
-import { Badge } from "@/components/ui/badge";
+import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
 
 type Testimonial = {
@@ -87,9 +87,11 @@ function TestimonialCard({ item }: { item: Testimonial }) {
       <CardContent className="p-6">
         <p className="text-base leading-7 text-slate-700">{item.quote}</p>
         <div className="mt-5 flex items-center gap-3">
-          <img
+          <Image
             src={item.image}
             alt={`${item.name} profile`}
+            width={44}
+            height={44}
             className="h-11 w-11 rounded-full border border-[#7DA0CA]/40 object-cover"
             loading="lazy"
           />
