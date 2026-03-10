@@ -94,6 +94,10 @@ h4 {
   animation-duration: 18s;
 }
 
+.skeleton-shimmer {
+  animation: skeletonShimmer 1.8s linear infinite;
+}
+
 @keyframes glowPulse {
   0%,
   100% {
@@ -149,13 +153,23 @@ h4 {
   }
 }
 
+@keyframes skeletonShimmer {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .glow-pulse,
   .marquee-track,
   .marquee-track-reverse,
   .services-marquee-track,
   .testimonials-marquee-track,
-  .testimonials-vertical-track {
+  .testimonials-vertical-track,
+  .skeleton-shimmer {
     animation: none !important;
   }
 }

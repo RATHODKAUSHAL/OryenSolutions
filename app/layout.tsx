@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import type { Viewport } from "next";
 import { Roboto_Mono, Rubik } from "next/font/google";
+import { PWAController } from "@/components/pwa/PWAController";
 import { StructuredData } from "@/components/seo/StructuredData";
 import { organizationSchema, siteConfig, websiteSchema } from "@/lib/site";
 import "./globals.css";
@@ -17,6 +19,7 @@ const robotoMono = Roboto_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
+  manifest: "/manifest.webmanifest",
   title: {
     default: "OryenSolutions | Web Development, BIM Automation & Custom Software",
     template: "%s | OryenSolutions",
@@ -58,7 +61,17 @@ export const metadata: Metadata = {
     shortcut: ["/favicon.ico"],
     apple: [{ url: "/favicon.ico" }],
   },
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: siteConfig.name,
+  },
   category: "technology",
+};
+
+export const viewport: Viewport = {
+  themeColor: "#0077b6",
+  colorScheme: "light",
 };
 
 export default function RootLayout({
@@ -71,6 +84,7 @@ export default function RootLayout({
       <body className={`${rubik.variable} ${robotoMono.variable} antialiased`}>
         <StructuredData data={[organizationSchema(), websiteSchema()]} />
         {children}
+        <PWAController />
       </body>
     </html>
   );

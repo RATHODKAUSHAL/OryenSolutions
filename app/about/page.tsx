@@ -73,19 +73,16 @@ export default function AboutPage() {
 
       <section className="relative overflow-hidden bg-[#f4f8fd] py-20 sm:py-24">
         <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,rgba(84,131,179,0.1)_1px,transparent_1px),linear-gradient(to_bottom,rgba(84,131,179,0.1)_1px,transparent_1px)] bg-[size:88px_88px]" />
-        <div className="relative mx-auto grid w-full max-w-7xl items-center gap-10 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
-          <div>
+        <div className="relative mx-auto w-full max-w-7xl items-center gap-10 px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col justify-center items-center">
             <p className="inline-flex rounded-full border border-[#7DA0CA]/70 bg-white px-4 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-[#052659]">
               About Us
             </p>
-            <h1 className="mt-5 text-4xl font-bold leading-tight sm:text-5xl">Building Better Workflows Through Agile Engineering</h1>
-            <p className="mt-5 text-lg leading-8 text-slate-600">
+            <h1 className="mt-5 text-center text-4xl font-bold leading-tight sm:text-5xl lg:text-7xl">Building Better Workflows Through Agile Engineering</h1>
+            <p className="mt-5 text-center text-lg leading-8 text-slate-600">
               OryenSolutions combines agile software delivery with deep engineering domain understanding. Our approach improves workflow visibility,
               reduces manual effort, and helps clients deliver faster with confidence.
             </p>
-          </div>
-          <div className="rounded-3xl border border-[#7DA0CA]/35 bg-white p-5 shadow-[0_12px_30px_rgba(84,131,179,0.14)]">
-            <Image src="/Assets/Oryen_Solutions.png" alt="Oryen Solutions" width={1320} height={752} className="h-auto w-full rounded-2xl object-cover" />
           </div>
         </div>
       </section>
